@@ -17,6 +17,17 @@ import CreateHotelPage
 import ManageHotelPage
     from "../pages/ManageHotelPage";
 
+import RoomTypesPage
+    from "../pages/RoomTypesPage";
+import RoomsPage
+    from "../pages/RoomsPage";
+import HotelReviewsPage
+    from "../pages/HotelReviewsPage";
+
+import EditHotelPage from "../pages/EditHotelPage";
+import HotelBookingsPage
+    from "../pages/HotelBookingsPage";
+
 function AppRoutes() {
 
     return (
@@ -32,10 +43,54 @@ function AppRoutes() {
                 />
 
                 <Route
+                    path="/manage-hotel/:hotelId/bookings"
+                    element={
+                        <ProtectedRoute>
+                            <HotelBookingsPage />
+                        </ProtectedRoute>
+                    }
+                />
+
+                <Route
+                    path="/manage-hotel/:hotelId/reviews"
+                    element={
+                        <ProtectedRoute>
+                            <HotelReviewsPage />
+                        </ProtectedRoute>
+                    }
+                />
+
+                <Route
                     path="/my-bookings"
                     element={
                         <ProtectedRoute>
                             <MyBookingsPage />
+                        </ProtectedRoute>
+                    }
+                />
+
+                <Route
+                    path="/manage-hotel/:hotelId/edit"
+                    element={
+                        <ProtectedRoute>
+                            <EditHotelPage />
+                        </ProtectedRoute>
+                    }
+                />
+                <Route
+                    path="/room-types/:roomTypeId/rooms"
+                    element={
+                        <ProtectedRoute>
+                            <RoomsPage />
+                        </ProtectedRoute>
+                    }
+                />
+
+                <Route
+                    path="/manage-hotel/:hotelId/room-types"
+                    element={
+                        <ProtectedRoute>
+                            <RoomTypesPage />
                         </ProtectedRoute>
                     }
                 />

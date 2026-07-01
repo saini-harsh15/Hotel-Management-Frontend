@@ -164,6 +164,36 @@ function ManageHotelPage() {
 
                             </div>
 
+                            <div className="col-md-6 mb-4">
+
+                                <div
+                                    className="card h-100 shadow-sm"
+                                    style={{
+                                        cursor: "pointer"
+                                    }}
+                                    onClick={() =>
+                                        navigate(
+                                            `/manage-hotel/${hotelId}/edit`
+                                        )
+                                    }
+                                >
+
+                                    <div className="card-body">
+
+                                        <h4>
+                                            ✏️ Edit Hotel
+                                        </h4>
+
+                                        <p className="text-muted">
+                                            Update hotel details, contact information and timings.
+                                        </p>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
                         </div>
 
                     </div>

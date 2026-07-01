@@ -111,3 +111,24 @@ export const checkOutBooking =
         return response.data;
 
     };
+
+export const getBookingsForHotel =
+    async (hotelId) => {
+
+        const token =
+            localStorage.getItem("token");
+
+        const response =
+            await axios.get(
+                `http://localhost:8081/api/bookings/hotel/${hotelId}`,
+                {
+                    headers: {
+                        Authorization:
+                            `Bearer ${token}`
+                    }
+                }
+            );
+
+        return response.data;
+
+    };

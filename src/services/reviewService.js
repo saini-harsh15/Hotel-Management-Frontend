@@ -28,11 +28,19 @@ export const createReview =
 export const getHotelReviews =
     async (hotelId) => {
 
+        const token =
+            localStorage.getItem("token");
+
         const response =
             await axios.get(
-                `${API_BASE_URL}/hotel/${hotelId}`
+                `${API_BASE_URL}/hotel/${hotelId}`,
+                {
+                    headers: {
+                        Authorization:
+                            `Bearer ${token}`
+                    }
+                }
             );
-
         return response.data;
 
     };

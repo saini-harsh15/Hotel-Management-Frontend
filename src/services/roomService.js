@@ -1,52 +1,17 @@
 import axios from "axios";
 
-const API_BASE_URL = "http://localhost:8081/api/hotels";
+const API_BASE_URL =
+    "http://localhost:8081/api/room-types";
 
-export const getAllHotels = async () => {
-
-
-    const response = await axios.get(
-        API_BASE_URL
-    );
-
-    return response.data;
-
-};
-
-export const searchHotelsByCity = async (city) => {
-
-    const response = await axios.get(
-        "http://localhost:8081/api/hotels/search/city",
-        {
-            params: {
-                city: city
-            }
-        }
-    );
-
-    return response.data;
-
-};
-
-export const getHotelById = async (hotelId) => {
-
-    const response = await axios.get(
-        `http://localhost:8081/api/hotels/${hotelId}`
-    );
-
-    return response.data;
-
-};
-
-export const getMyHotels =
-    async () => {
+export const getRoomsByRoomType =
+    async (roomTypeId) => {
 
         const token =
             localStorage.getItem("token");
 
         const response =
             await axios.get(
-                `${API_BASE_URL}/my-hotels`,
+                `${API_BASE_URL}/${roomTypeId}/rooms`,
                 {
                     headers: {
                         Authorization:
@@ -59,16 +24,16 @@ export const getMyHotels =
 
     };
 
-export const createHotel =
-    async (hotelData) => {
+export const createRoom =
+    async (roomTypeId, roomData) => {
 
         const token =
             localStorage.getItem("token");
 
         const response =
             await axios.post(
-                API_BASE_URL,
-                hotelData,
+                `${API_BASE_URL}/${roomTypeId}/rooms`,
+                roomData,
                 {
                     headers: {
                         Authorization:
@@ -81,16 +46,20 @@ export const createHotel =
 
     };
 
-export const updateHotel =
-    async (hotelId, hotelData) => {
+export const updateRoom =
+    async (
+        roomTypeId,
+        roomId,
+        roomData
+    ) => {
 
         const token =
             localStorage.getItem("token");
 
         const response =
             await axios.put(
-                `${API_BASE_URL}/${hotelId}`,
-                hotelData,
+                `${API_BASE_URL}/${roomTypeId}/rooms/${roomId}`,
+                roomData,
                 {
                     headers: {
                         Authorization:
