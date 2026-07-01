@@ -3,7 +3,7 @@
 A modern React-based frontend for the Hotel Management System. This application provides an intuitive user interface for Customers and Hotel Administrators to manage hotels, bookings, rooms, and reviews through a secure REST API.
 
 > **Backend Repository:**  
-> https://github.com/saini-harsh15/Hotel-Management-System-Backend
+> https://github.com/saini-harsh15/Hotel-Management
 
 ---
 
