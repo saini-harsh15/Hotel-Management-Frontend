@@ -50,7 +50,7 @@ The frontend communicates with the Spring Boot backend using REST APIs.
 
 Backend Repository:
 
-https://github.com/saini-harsh15/Hotel-Management-System-Backend
+https://github.com/saini-harsh15/Hotel-Management
 
 ---
 
