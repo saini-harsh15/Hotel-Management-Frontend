@@ -114,20 +114,6 @@ src
 ├── assets
 └── App.jsx
 ```
-
----
-
-## Screenshots
-
-You can add screenshots of:
-
-- Login Page
-- Hotel Dashboard
-- Room Types
-- Rooms Management
-- Bookings
-- Reviews
-
 ---
 
 ## Author
