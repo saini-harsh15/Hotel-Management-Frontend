@@ -5,7 +5,9 @@ import Navbar from "../components/Navbar";
 import {
     getRoomsByRoomType,
     createRoom,
-    updateRoom
+    updateRoom,
+    updateRoomStatus,
+    deleteRoom
 } from "../services/roomService";
 
 function RoomsPage() {
@@ -141,6 +143,79 @@ function RoomsPage() {
 
         };
 
+    const handleStatusChange =
+        async (
+            roomId,
+            status
+        ) => {
+
+            try {
+
+                await updateRoomStatus(
+                    roomTypeId,
+                    roomId,
+                    status
+                );
+
+                await fetchRooms();
+
+            }
+
+            catch (error) {
+
+                console.error(error);
+
+                alert(
+                    error.response?.data?.message
+                    ||
+                    "Failed to update room status."
+                );
+
+            }
+
+        };
+
+
+    const handleDeleteRoom =
+        async (
+            roomId
+        ) => {
+
+            const confirmed =
+                window.confirm(
+                    "Are you sure you want to delete this room?"
+                );
+
+            if (!confirmed) {
+
+                return;
+
+            }
+
+            try {
+
+                await deleteRoom(
+                    roomTypeId,
+                    roomId
+                );
+
+                await fetchRooms();
+
+            }
+
+            catch (error) {
+
+                console.error(error);
+
+                alert(
+                    error.response?.data?.message
+                    ||
+                    "Failed to delete room."
+                );
+
+            }
+
+        };
     const openEditModal =
         (room) => {
 
@@ -290,16 +365,80 @@ function RoomsPage() {
 
                                             <hr />
 
-                                            <button
-                                                className="btn btn-outline-primary w-100 mt-2"
-                                                onClick={() =>
-                                                    openEditModal(room)
+                                            <div className="d-grid gap-2 mt-3">
+
+                                                <button
+                                                    className="btn btn-dark"
+                                                    onClick={() =>
+                                                        openEditModal(room)
+                                                    }
+                                                >
+                                                    ✏ Edit Room
+                                                </button>
+
+                                                {
+                                                    room.status !== "AVAILABLE" && (
+
+                                                        <button
+                                                            className="btn btn-success"
+                                                            onClick={() =>
+                                                                handleStatusChange(
+                                                                    room.id,
+                                                                    "AVAILABLE"
+                                                                )
+                                                            }
+                                                        >
+                                                            🟢 Make Available
+                                                        </button>
+
+                                                    )
                                                 }
-                                            >
 
-                                                ✏ Edit Room
+                                                {
+                                                    room.status !== "MAINTENANCE" && (
 
-                                            </button>
+                                                        <button
+                                                            className="btn btn-warning"
+                                                            onClick={() =>
+                                                                handleStatusChange(
+                                                                    room.id,
+                                                                    "MAINTENANCE"
+                                                                )
+                                                            }
+                                                        >
+                                                            🟡 Maintenance
+                                                        </button>
+
+                                                    )
+                                                }
+
+                                                {
+                                                    room.status !== "INACTIVE" && (
+
+                                                        <button
+                                                            className="btn btn-secondary"
+                                                            onClick={() =>
+                                                                handleStatusChange(
+                                                                    room.id,
+                                                                    "INACTIVE"
+                                                                )
+                                                            }
+                                                        >
+                                                            ⚫ Inactivate
+                                                        </button>
+
+                                                    )
+                                                }
+                                                <button
+                                                    className="btn btn-outline-danger"
+                                                    onClick={() =>
+                                                        handleDeleteRoom(room.id)
+                                                    }
+                                                >
+                                                    🗑 Delete Room
+                                                </button>
+
+                                            </div>
 
                                         </div>
 

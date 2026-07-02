@@ -21,14 +21,23 @@ function LoginPage() {
 
         if (token) {
 
-            if (role === "HOTEL_ADMIN") {
+            if (role === "SUPER_ADMIN") {
+
+                navigate(
+                    "/admin/dashboard",
+                    { replace: true }
+                );
+
+            }
+            else if (role === "HOTEL_ADMIN") {
 
                 navigate(
                     "/my-hotels",
                     { replace: true }
                 );
 
-            } else {
+            }
+            else {
 
                 navigate(
                     "/hotels",
@@ -63,14 +72,23 @@ function LoginPage() {
                 response.data.role
             );
 
-            if (response.data.role === "HOTEL_ADMIN") {
+            if (response.data.role === "SUPER_ADMIN") {
+
+                navigate(
+                    "/admin/dashboard",
+                    { replace: true }
+                );
+
+            }
+            else if (response.data.role === "HOTEL_ADMIN") {
 
                 navigate(
                     "/my-hotels",
                     { replace: true }
                 );
 
-            } else {
+            }
+            else {
 
                 navigate(
                     "/hotels",
@@ -79,7 +97,8 @@ function LoginPage() {
 
             }
 
-        } catch (error) {
+        }
+        catch (error) {
 
             console.error(error);
 

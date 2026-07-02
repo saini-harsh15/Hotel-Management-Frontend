@@ -71,3 +71,55 @@ export const updateRoom =
         return response.data;
 
     };
+
+export const updateRoomStatus =
+    async (
+        roomTypeId,
+        roomId,
+        status
+    ) => {
+
+        const token =
+            localStorage.getItem("token");
+
+        const response =
+            await axios.patch(
+                `${API_BASE_URL}/${roomTypeId}/rooms/${roomId}/status`,
+                {
+                    status
+                },
+                {
+                    headers: {
+                        Authorization:
+                            `Bearer ${token}`
+                    }
+                }
+            );
+
+        return response.data;
+
+    };
+
+export const deleteRoom =
+    async (
+        roomTypeId,
+        roomId
+    ) => {
+
+        const token =
+            localStorage.getItem("token");
+
+        const response =
+            await axios.delete(
+                `${API_BASE_URL}/${roomTypeId}/rooms/${roomId}`,
+                {
+                    headers: {
+                        Authorization:
+                            `Bearer ${token}`
+                    }
+                }
+            );
+
+        return response.data;
+
+    };

@@ -28,6 +28,10 @@ import EditHotelPage from "../pages/EditHotelPage";
 import HotelBookingsPage
     from "../pages/HotelBookingsPage";
 
+import PendingHotelsPage from "../pages/PendingHotelsPage";
+
+import SuperAdminDashboardPage from "../pages/SuperAdminDashboardPage";
+
 function AppRoutes() {
 
     return (
@@ -49,6 +53,16 @@ function AppRoutes() {
                             <HotelBookingsPage />
                         </ProtectedRoute>
                     }
+                />
+
+                <Route
+                    path="/admin/pending-hotels"
+                    element={<PendingHotelsPage />}
+                />
+
+                <Route
+                    path="/admin/dashboard"
+                    element={<SuperAdminDashboardPage />}
                 />
 
                 <Route
