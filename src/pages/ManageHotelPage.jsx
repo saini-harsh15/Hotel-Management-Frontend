@@ -74,35 +74,7 @@ function ManageHotelPage() {
 
                             </div>
 
-                            <div className="col-md-6 mb-4">
 
-                                <div
-                                    className="card h-100 shadow-sm"
-                                    style={{
-                                        cursor: "pointer"
-                                    }}
-                                    onClick={() =>
-                                        navigate(
-                                            `/manage-hotel/${hotelId}/rooms`
-                                        )
-                                    }
-                                >
-
-                                    <div className="card-body">
-
-                                        <h4>
-                                            🚪 Rooms
-                                        </h4>
-
-                                        <p className="text-muted">
-                                            Add and manage hotel rooms.
-                                        </p>
-
-                                    </div>
-
-                                </div>
-
-                            </div>
 
                             <div className="col-md-6 mb-4">
 

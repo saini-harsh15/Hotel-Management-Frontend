@@ -32,6 +32,11 @@ import PendingHotelsPage from "../pages/PendingHotelsPage";
 
 import SuperAdminDashboardPage from "../pages/SuperAdminDashboardPage";
 
+import UserManagementPage
+    from "../pages/UserManagementPage";
+
+import AdminDashboardPage
+    from "../pages/AdminDashboardPage";
 function AppRoutes() {
 
     return (
@@ -56,8 +61,30 @@ function AppRoutes() {
                 />
 
                 <Route
+                    path="/admin/analytics"
+                    element={
+                        <ProtectedRoute>
+                            <AdminDashboardPage />
+                        </ProtectedRoute>
+                    }
+                />
+
+                <Route
+                    path="/admin/users"
+                    element={
+                        <ProtectedRoute>
+                            <UserManagementPage />
+                        </ProtectedRoute>
+                    }
+                />
+
+                <Route
                     path="/admin/pending-hotels"
-                    element={<PendingHotelsPage />}
+                    element={
+                        <ProtectedRoute>
+                            <PendingHotelsPage />
+                        </ProtectedRoute>
+                    }
                 />
 
                 <Route
