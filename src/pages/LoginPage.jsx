@@ -6,95 +6,54 @@ import { Link } from "react-router-dom";
 function LoginPage() {
 
     const [email, setEmail] = useState("");
-
     const [password, setPassword] = useState("");
-
+    const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
 
     useEffect(() => {
 
-        const token =
-            localStorage.getItem("token");
-
-        const role =
-            localStorage.getItem("role");
+        const token = localStorage.getItem("token");
+        const role = localStorage.getItem("role");
 
         if (token) {
 
             if (role === "SUPER_ADMIN") {
-
-                navigate(
-                    "/admin/dashboard",
-                    { replace: true }
-                );
-
+                navigate("/admin/dashboard", { replace: true });
             }
             else if (role === "HOTEL_ADMIN") {
-
-                navigate(
-                    "/my-hotels",
-                    { replace: true }
-                );
-
+                navigate("/my-hotels", { replace: true });
             }
             else {
-
-                navigate(
-                    "/hotels",
-                    { replace: true }
-                );
-
+                navigate("/hotels", { replace: true });
             }
 
         }
 
     }, [navigate]);
 
-    const handleLogin = async () => {
+    const handleLogin = async (e) => {
+
+        if (e) e.preventDefault();
+
+        setLoading(true);
 
         try {
 
-            const response =
-                await login(
-                    email,
-                    password
-                );
+            const response = await login(email, password);
 
             console.log(response.data);
 
-            localStorage.setItem(
-                "token",
-                response.data.token
-            );
-
-            localStorage.setItem(
-                "role",
-                response.data.role
-            );
+            localStorage.setItem("token", response.data.token);
+            localStorage.setItem("role", response.data.role);
 
             if (response.data.role === "SUPER_ADMIN") {
-
-                navigate(
-                    "/admin/dashboard",
-                    { replace: true }
-                );
-
+                navigate("/admin/dashboard", { replace: true });
             }
             else if (response.data.role === "HOTEL_ADMIN") {
-
-                navigate(
-                    "/my-hotels",
-                    { replace: true }
-                );
-
+                navigate("/my-hotels", { replace: true });
             }
             else {
-
-                navigate(
-                    "/hotels",
-                    { replace: true }
-                );
-
+                navigate("/hotels", { replace: true });
             }
 
         }
@@ -109,187 +68,372 @@ function LoginPage() {
             alert(message);
 
         }
+        finally {
+            setLoading(false);
+        }
 
     };
 
     return (
 
-        <div
-            className="container-fluid vh-100 p-0"
-            style={{
-                backgroundColor: "#0f172a"
-            }}
-        >
+        <div className="auth-root">
 
-            <div className="row g-0 h-100">
+            <div className="auth-bg" aria-hidden="true">
+                <div className="blob blob-a" />
+                <div className="blob blob-b" />
+                <svg className="skyline" viewBox="0 0 900 300" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+                    <g stroke="rgba(255,255,255,0.16)" strokeWidth="1.4" fill="none">
+                        <rect x="40" y="130" width="70" height="170" rx="4" />
+                        <rect x="120" y="90" width="90" height="210" rx="4" />
+                        <rect x="220" y="150" width="60" height="150" rx="4" />
+                        <rect x="600" y="110" width="80" height="190" rx="4" />
+                        <rect x="690" y="160" width="65" height="140" rx="4" />
+                        <rect x="770" y="70" width="95" height="230" rx="4" />
+                        <line x1="120" y1="115" x2="120" y2="115" />
+                    </g>
+                    <g fill="rgba(255,255,255,0.35)">
+                        <circle cx="55" cy="150" r="1.6" />
+                        <circle cx="55" cy="170" r="1.6" />
+                        <circle cx="75" cy="150" r="1.6" />
+                        <circle cx="75" cy="170" r="1.6" />
+                        <circle cx="95" cy="150" r="1.6" />
+                        <circle cx="140" cy="115" r="1.6" />
+                        <circle cx="140" cy="140" r="1.6" />
+                        <circle cx="140" cy="165" r="1.6" />
+                        <circle cx="165" cy="115" r="1.6" />
+                        <circle cx="165" cy="140" r="1.6" />
+                        <circle cx="790" cy="100" r="1.6" />
+                        <circle cx="790" cy="130" r="1.6" />
+                        <circle cx="815" cy="100" r="1.6" />
+                        <circle cx="815" cy="130" r="1.6" />
+                    </g>
+                </svg>
+            </div>
 
-                <div
-                    className="col-lg-7 d-none d-lg-flex flex-column justify-content-center px-5"
-                    style={{
-                        background:
-                            "linear-gradient(135deg,#0f172a,#1e293b)"
-                    }}
-                >
+            <div className="auth-shell">
 
-                    <div
-                        style={{
-                            maxWidth: "600px",
-                            marginLeft: "80px"
-                        }}
-                    >
+                <div className="auth-intro">
 
-                        <span
-                            className="badge rounded-pill mb-4"
-                            style={{
-                                backgroundColor: "#1e293b",
-                                color: "#cbd5e1",
-                                padding: "10px 18px"
-                            }}
-                        >
-                            Hotel Management Platform
-                        </span>
+                    <span className="auth-badge">Hotel Management Platform</span>
 
-                        <h1
-                            className="fw-bold text-white"
-                            style={{
-                                fontSize: "4rem",
-                                lineHeight: "1.1"
-                            }}
-                        >
-                            Manage hotels,
-                            bookings and guests
-                            from one dashboard.
-                        </h1>
+                    <h1 className="auth-headline">
+                        Manage hotels,
+                        bookings and guests
+                        from one dashboard.
+                    </h1>
 
-                        <p
-                            className="text-secondary mt-4"
-                            style={{
-                                fontSize: "1.2rem"
-                            }}
-                        >
-                            A modern platform for hotel
-                            operations, reservations,
-                            payments and customer
-                            management.
-                        </p>
-
-                    </div>
+                    <p className="auth-subtext">
+                        A modern platform for hotel operations, reservations,
+                        payments and customer management.
+                    </p>
 
                 </div>
 
-                <div
-                    className="col-lg-5 bg-white d-flex justify-content-center align-items-center"
-                >
+                <form className="auth-card" onSubmit={handleLogin}>
 
-                    <div
-                        style={{
-                            width: "100%",
-                            maxWidth: "420px"
-                        }}
-                    >
-
-                        <div className="mb-5">
-
-                            <h2
-                                className="fw-bold"
-                                style={{
-                                    fontSize: "2rem"
-                                }}
-                            >
-                                Welcome back
-                            </h2>
-
-                            <p className="text-secondary">
-                                Sign in to your account
-                            </p>
-
-                        </div>
-
-                        <div className="mb-3">
-
-                            <label
-                                className="form-label fw-medium"
-                            >
-                                Email
-                            </label>
-
-                            <input
-                                type="email"
-                                className="form-control form-control-lg"
-                                placeholder="name@example.com"
-                                value={email}
-                                onChange={(e) =>
-                                    setEmail(
-                                        e.target.value
-                                    )
-                                }
-                                style={{
-                                    borderRadius: "12px"
-                                }}
-                            />
-
-                        </div>
-
-                        <div className="mb-4">
-
-                            <label
-                                className="form-label fw-medium"
-                            >
-                                Password
-                            </label>
-
-                            <input
-                                type="password"
-                                className="form-control form-control-lg"
-                                placeholder="••••••••"
-                                value={password}
-                                onChange={(e) =>
-                                    setPassword(
-                                        e.target.value
-                                    )
-                                }
-                                style={{
-                                    borderRadius: "12px"
-                                }}
-                            />
-
-                        </div>
-
-                        <button
-                            className="btn btn-dark w-100 py-3"
-                            style={{
-                                borderRadius: "12px",
-                                fontWeight: "600"
-                            }}
-                            onClick={handleLogin}
-                        >
-                            Log In
-                        </button>
-
-                        <div className="text-center mt-3">
-
-                            Don't have an account?
-
-                            <Link
-                                to="/register"
-                                className="ms-2"
-                            >
-                                Sign Up
-                            </Link>
-
-                        </div>
-                        <div
-                            className="text-center mt-5 text-secondary"
-                        >
-                            Hotel Management System
-                            v1.0
-                        </div>
-
+                    <div className="auth-card-head">
+                        <h2 className="auth-title">Welcome back</h2>
+                        <p className="auth-subtitle">Sign in to your account</p>
                     </div>
 
-                </div>
+                    <div className="auth-field">
+                        <label className="auth-label" htmlFor="email">Email</label>
+                        <input
+                            id="email"
+                            type="email"
+                            autoComplete="email"
+                            className="auth-input"
+                            placeholder="name@example.com"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            required
+                        />
+                    </div>
+
+                    <div className="auth-field">
+                        <label className="auth-label" htmlFor="password">Password</label>
+                        <input
+                            id="password"
+                            type="password"
+                            autoComplete="current-password"
+                            className="auth-input"
+                            placeholder="••••••••"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            required
+                        />
+                    </div>
+
+                    <button type="submit" className="auth-btn" disabled={loading}>
+                        {loading ? "Signing in…" : "Log In"}
+                    </button>
+
+                    <div className="auth-signup-row">
+                        Don't have an account?
+                        <Link to="/register" className="auth-link">Sign Up</Link>
+                    </div>
+
+                    <div className="auth-version">Hotel Management System v1.0</div>
+
+                </form>
 
             </div>
+
+            <style>{`
+                @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap');
+
+                .auth-root {
+                    --violet: #6D5BD0;
+                    --violet-deep: #4A3AA8;
+                    --teal: #23C4A8;
+                    --ink: #1B1B23;
+                    --ink-soft: #5B5A66;
+                    --muted: #8B8A97;
+                    --line: #E9E8F0;
+                    --cream: #FCFBFF;
+                    position: relative;
+                    min-height: 100vh;
+                    width: 100%;
+                    overflow: hidden;
+                    font-family: 'Inter', system-ui, sans-serif;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+
+                .auth-bg {
+                    position: absolute;
+                    inset: 0;
+                    background: linear-gradient(150deg, var(--violet-deep) 0%, var(--violet) 45%, #3E8FBD 78%, var(--teal) 100%);
+                    overflow: hidden;
+                }
+
+                .blob {
+                    position: absolute;
+                    border-radius: 50%;
+                    filter: blur(60px);
+                    opacity: 0.55;
+                }
+
+                .blob-a {
+                    width: 480px;
+                    height: 480px;
+                    top: -160px;
+                    left: -120px;
+                    background: radial-gradient(circle, rgba(255,255,255,0.35), transparent 70%);
+                    animation: drift-a 16s ease-in-out infinite;
+                }
+
+                .blob-b {
+                    width: 420px;
+                    height: 420px;
+                    bottom: -180px;
+                    right: -100px;
+                    background: radial-gradient(circle, rgba(35,196,168,0.5), transparent 70%);
+                    animation: drift-b 18s ease-in-out infinite;
+                }
+
+                @keyframes drift-a {
+                    0%, 100% { transform: translate(0, 0); }
+                    50%      { transform: translate(40px, 30px); }
+                }
+
+                @keyframes drift-b {
+                    0%, 100% { transform: translate(0, 0); }
+                    50%      { transform: translate(-30px, -25px); }
+                }
+
+                .skyline {
+                    position: absolute;
+                    bottom: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 42%;
+                    opacity: 0.8;
+                }
+
+                .auth-shell {
+                    position: relative;
+                    z-index: 1;
+                    width: 100%;
+                    max-width: 1100px;
+                    display: grid;
+                    grid-template-columns: 1.15fr 1fr;
+                    gap: 3.5rem;
+                    align-items: center;
+                    padding: 2rem;
+                }
+
+                .auth-intro {
+                    color: #FFFFFF;
+                    animation: rise 0.7s cubic-bezier(.22,1,.36,1) both;
+                }
+
+                .auth-badge {
+                    display: inline-block;
+                    background: rgba(255,255,255,0.14);
+                    backdrop-filter: blur(6px);
+                    border: 1px solid rgba(255,255,255,0.2);
+                    color: #FFFFFF;
+                    font-size: 0.8rem;
+                    font-weight: 600;
+                    padding: 0.5rem 1.05rem;
+                    border-radius: 999px;
+                    margin-bottom: 1.8rem;
+                }
+
+                .auth-headline {
+                    font-family: 'Space Grotesk', sans-serif;
+                    font-weight: 700;
+                    font-size: 3.1rem;
+                    line-height: 1.14;
+                    letter-spacing: -0.01em;
+                    margin: 0 0 1.3rem;
+                    text-shadow: 0 2px 24px rgba(0,0,0,0.15);
+                }
+
+                .auth-subtext {
+                    font-size: 1.08rem;
+                    line-height: 1.6;
+                    color: rgba(255,255,255,0.82);
+                    max-width: 440px;
+                    margin: 0;
+                }
+
+                .auth-card {
+                    position: relative;
+                    background: rgba(255, 255, 255, 0.92);
+                    backdrop-filter: blur(20px);
+                    border: 1px solid rgba(255,255,255,0.5);
+                    border-radius: 22px;
+                    padding: 2.5rem 2.3rem 2.1rem;
+                    box-shadow: 0 30px 70px -20px rgba(30, 20, 70, 0.45);
+                    animation: rise 0.7s 0.1s cubic-bezier(.22,1,.36,1) both;
+                }
+
+                .auth-card-head { margin-bottom: 1.9rem; }
+
+                .auth-title {
+                    font-family: 'Space Grotesk', sans-serif;
+                    font-weight: 700;
+                    font-size: 1.7rem;
+                    color: var(--ink);
+                    margin: 0 0 0.25rem;
+                }
+
+                .auth-subtitle {
+                    color: var(--muted);
+                    font-size: 0.92rem;
+                    margin: 0;
+                }
+
+                .auth-field { margin-bottom: 1.2rem; }
+
+                .auth-label {
+                    display: block;
+                    font-size: 0.82rem;
+                    font-weight: 600;
+                    color: var(--ink-soft);
+                    margin-bottom: 0.4rem;
+                }
+
+                .auth-input {
+                    width: 100%;
+                    border: 1.5px solid var(--line);
+                    background: #FFFFFF;
+                    border-radius: 12px;
+                    padding: 0.72rem 0.9rem;
+                    font-size: 0.96rem;
+                    color: var(--ink);
+                    font-family: 'Inter', sans-serif;
+                    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+                }
+
+                .auth-input::placeholder { color: #BFBECB; }
+
+                .auth-input:focus {
+                    outline: none;
+                    border-color: var(--violet);
+                    box-shadow: 0 0 0 4px rgba(109, 91, 208, 0.15);
+                }
+
+                .auth-btn {
+                    width: 100%;
+                    margin-top: 0.4rem;
+                    padding: 0.82rem;
+                    border: none;
+                    border-radius: 12px;
+                    background: linear-gradient(120deg, var(--violet) 0%, var(--teal) 130%);
+                    color: #FFFFFF;
+                    font-size: 0.95rem;
+                    font-weight: 700;
+                    cursor: pointer;
+                    box-shadow: 0 10px 24px -8px rgba(109, 91, 208, 0.55);
+                    transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
+                }
+
+                .auth-btn:hover:not(:disabled) {
+                    filter: brightness(1.06);
+                    transform: translateY(-1px);
+                }
+
+                .auth-btn:active:not(:disabled) {
+                    transform: translateY(0);
+                }
+
+                .auth-btn:disabled {
+                    opacity: 0.65;
+                    cursor: not-allowed;
+                }
+
+                .auth-btn:focus-visible {
+                    outline: 2px solid var(--violet-deep);
+                    outline-offset: 3px;
+                }
+
+                .auth-signup-row {
+                    text-align: center;
+                    margin-top: 1.3rem;
+                    font-size: 0.88rem;
+                    color: var(--muted);
+                }
+
+                .auth-link {
+                    color: var(--violet);
+                    font-weight: 700;
+                    text-decoration: none;
+                    margin-left: 0.4rem;
+                }
+
+                .auth-link:hover { text-decoration: underline; }
+
+                .auth-version {
+                    text-align: center;
+                    margin-top: 1.7rem;
+                    font-size: 0.74rem;
+                    color: #C6C4D4;
+                }
+
+                @keyframes rise {
+                    from { opacity: 0; transform: translateY(18px); }
+                    to   { opacity: 1; transform: translateY(0); }
+                }
+
+                @media (prefers-reduced-motion: reduce) {
+                    .auth-intro, .auth-card, .blob-a, .blob-b { animation: none; }
+                }
+
+                @media (max-width: 900px) {
+                    .auth-shell {
+                        grid-template-columns: 1fr;
+                        gap: 2.2rem;
+                        text-align: center;
+                    }
+                    .auth-intro { display: flex; flex-direction: column; align-items: center; }
+                    .auth-headline { font-size: 2.3rem; }
+                    .auth-card { max-width: 420px; margin: 0 auto; }
+                }
+            `}</style>
 
         </div>
 
@@ -297,4 +441,4 @@ function LoginPage() {
 
 }
 
-export default LoginPage;   
+export default LoginPage;
