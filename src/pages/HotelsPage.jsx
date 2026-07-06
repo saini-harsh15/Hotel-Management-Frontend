@@ -5,6 +5,7 @@ import {
     searchHotelsByCity
 } from "../services/hotelService";
 import Navbar from "../components/Navbar";
+import { Star, MapPin } from "lucide-react";
 
 function HotelsPage() {
 
@@ -171,7 +172,8 @@ function HotelsPage() {
                                                         />
 
                                                         <span className="hp-rating-chip">
-                                                            ⭐ {hotel.averageRating?.toFixed(1) || "0.0"}
+                                                            <Star size={13} strokeWidth={2.3} fill="currentColor" />
+                                                            {hotel.averageRating?.toFixed(1) || "0.0"}
                                                         </span>
 
                                                     </div>
@@ -180,7 +182,9 @@ function HotelsPage() {
 
                                                         <h5 className="hp-hotel-name">{hotel.name}</h5>
 
-                                                        <p className="hp-hotel-city">📍 {hotel.city}</p>
+                                                        <p className="hp-hotel-city">
+                                                            <MapPin size={14} strokeWidth={2.2} /> {hotel.city}
+                                                        </p>
 
                                                         <button
                                                             className="hp-view-btn"
@@ -412,6 +416,9 @@ function HotelsPage() {
                     position: absolute;
                     top: 0.9rem;
                     right: 0.9rem;
+                    display: inline-flex;
+                    align-items: center;
+                    gap: 0.3rem;
                     background: rgba(255,255,255,0.94);
                     backdrop-filter: blur(8px);
                     border-radius: 999px;
@@ -420,6 +427,10 @@ function HotelsPage() {
                     font-weight: 700;
                     color: var(--ink);
                     box-shadow: 0 8px 20px -8px rgba(0,0,0,0.3);
+                }
+
+                .hp-rating-chip svg {
+                    color: #D9A441;
                 }
 
                 .hp-card-body {
@@ -435,9 +446,17 @@ function HotelsPage() {
                 }
 
                 .hp-hotel-city {
+                    display: flex;
+                    align-items: center;
+                    gap: 0.35rem;
                     color: var(--muted);
                     font-size: 0.9rem;
                     margin: 0 0 1.1rem;
+                }
+
+                .hp-hotel-city svg {
+                    color: var(--violet);
+                    flex-shrink: 0;
                 }
 
                 .hp-view-btn {

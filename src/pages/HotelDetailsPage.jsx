@@ -3,6 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import { getHotelById } from "../services/hotelService";
 import { getHotelReviews } from "../services/reviewService";
+import { MapPin, Star, BadgeCheck } from "lucide-react";
 
 function HotelDetailsPage() {
 
@@ -90,14 +91,16 @@ function HotelDetailsPage() {
 
                         <div className="hd-hero-content">
 
-                            <span className="hd-location-pill">📍 {hotel.city}</span>
+                            <span className="hd-location-pill">
+                                <MapPin size={13} strokeWidth={2.3} /> {hotel.city}
+                            </span>
 
                             <h1 className="hd-hotel-name">{hotel.name}</h1>
 
                         </div>
 
                         <div className="hd-rating-badge">
-                            <span className="hd-rating-star">⭐</span>
+                            <Star size={15} strokeWidth={2.2} className="hd-rating-star" fill="currentColor" />
                             <span className="hd-rating-value">
                                 {hotel.averageRating?.toFixed(1) || "0.0"}
                             </span>
@@ -159,10 +162,22 @@ function HotelDetailsPage() {
                                                 <div className="hd-review-top">
 
                                                     <div className="hd-review-stars">
-                                                        {"⭐".repeat(review.rating)}
+                                                        {
+                                                            Array.from({ length: review.rating }).map((_, i) => (
+                                                                <Star
+                                                                    key={i}
+                                                                    size={14}
+                                                                    strokeWidth={2.2}
+                                                                    fill="currentColor"
+                                                                    className="hd-review-star-icon"
+                                                                />
+                                                            ))
+                                                        }
                                                     </div>
 
-                                                    <span className="hd-verified">✔ Verified Stay</span>
+                                                    <span className="hd-verified">
+                                                        <BadgeCheck size={14} strokeWidth={2.3} /> Verified Stay
+                                                    </span>
 
                                                 </div>
 
@@ -220,6 +235,7 @@ const hdStyles = `
         --violet: #6D5BD0;
         --violet-deep: #4A3AA8;
         --teal: #23C4A8;
+        --amber: #D9A441;
         --ink: #1B1B23;
         --ink-soft: #5B5A66;
         --muted: #8B8A97;
@@ -294,7 +310,9 @@ const hdStyles = `
     }
 
     .hd-location-pill {
-        display: inline-block;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.35rem;
         background: rgba(255,255,255,0.16);
         backdrop-filter: blur(6px);
         border: 1px solid rgba(255,255,255,0.25);
@@ -327,7 +345,7 @@ const hdStyles = `
         box-shadow: 0 12px 30px -10px rgba(30,20,70,0.35);
     }
 
-    .hd-rating-star { font-size: 0.95rem; }
+    .hd-rating-star { color: var(--amber); flex-shrink: 0; }
 
     .hd-rating-value {
         font-family: 'Space Grotesk', sans-serif;
@@ -464,9 +482,20 @@ const hdStyles = `
         margin-bottom: 0.6rem;
     }
 
-    .hd-review-stars { font-size: 0.9rem; }
+    .hd-review-stars {
+        display: flex;
+        align-items: center;
+        gap: 0.15rem;
+    }
+
+    .hd-review-star-icon {
+        color: var(--amber);
+    }
 
     .hd-verified {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.3rem;
         font-size: 0.78rem;
         font-weight: 600;
         color: var(--teal);
