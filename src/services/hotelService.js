@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_BASE_URL = "http://localhost:8081/api/hotels";
+const API_BASE_URL = "https://finalhotel-production.up.railway.app/api/hotels";
 
 export const getAllHotels = async () => {
 
@@ -16,7 +16,7 @@ export const getAllHotels = async () => {
 export const searchHotelsByCity = async (city) => {
 
     const response = await axios.get(
-        "http://localhost:8081/api/hotels/search/city",
+        "https://finalhotel-production.up.railway.app/api/hotels/search/city",
         {
             params: {
                 city: city

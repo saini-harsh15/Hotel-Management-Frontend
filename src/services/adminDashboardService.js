@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const API =
-    "http://localhost:8081/api/admin/dashboard";
+    "https://finalhotel-production.up.railway.app/api/admin/dashboard";
 
 const getToken = () =>
     localStorage.getItem("token");

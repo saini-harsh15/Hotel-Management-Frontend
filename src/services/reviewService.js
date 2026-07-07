@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const API_BASE_URL =
-    "http://localhost:8081/api/reviews";
+    "https://finalhotel-production.up.railway.app/api/reviews";
 
 export const createReview =
     async (reviewData) => {

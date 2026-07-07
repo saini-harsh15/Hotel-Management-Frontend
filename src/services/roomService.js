@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const API_BASE_URL =
-    "http://localhost:8081/api/room-types";
+    "https://finalhotel-production.up.railway.app/api/room-types";
 
 export const getRoomsByRoomType =
     async (roomTypeId) => {

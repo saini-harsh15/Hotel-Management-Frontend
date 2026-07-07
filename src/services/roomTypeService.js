@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const API_BASE_URL =
-    "http://localhost:8081/api";
+    "https://finalhotel-production.up.railway.app/api";
 
 export const getRoomTypesByHotel =
     async (hotelId) => {
@@ -23,7 +23,7 @@ export const createRoomType =
 
         const response =
             await axios.post(
-                `http://localhost:8081/api/hotels/${hotelId}/room-types`,
+                `https://finalhotel-production.up.railway.app/api/hotels/${hotelId}/room-types`,
                 roomType,
                 {
                     headers: {

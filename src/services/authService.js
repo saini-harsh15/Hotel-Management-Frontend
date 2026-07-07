@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_BASE_URL = "http://localhost:8081/api/auth";
+const API_BASE_URL = "https://finalhotel-production.up.railway.app/api/auth";
 
 export const login = async (email, password) => {
 
@@ -22,7 +22,7 @@ export const register =
 
         const response =
             await axios.post(
-                "http://localhost:8081/api/auth/register",
+                "https://finalhotel-production.up.railway.app/api/auth/register",
                 userData
             );
 

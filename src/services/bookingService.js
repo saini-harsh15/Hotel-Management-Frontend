@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const API_BASE_URL =
-    "http://localhost:8081/api/bookings";
+    "https://finalhotel-production.up.railway.app/api/bookings";
 
 export const createBooking =
     async (bookingData) => {
@@ -120,7 +120,7 @@ export const getBookingsForHotel =
 
         const response =
             await axios.get(
-                `http://localhost:8081/api/bookings/hotel/${hotelId}`,
+                `https://finalhotel-production.up.railway.app/api/bookings/hotel/${hotelId}`,
                 {
                     headers: {
                         Authorization:
