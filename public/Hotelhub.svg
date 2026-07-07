@@ -1,0 +1,83 @@
+<svg viewBox="0 0 600 480" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F4E4A6"/>
+      <stop offset="45%" stop-color="#D4AF37"/>
+      <stop offset="100%" stop-color="#9C7A1E"/>
+    </linearGradient>
+    <linearGradient id="goldGradSoft" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#EAD98C"/>
+      <stop offset="100%" stop-color="#D4AF37"/>
+    </linearGradient>
+    <linearGradient id="navyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1E293B"/>
+      <stop offset="100%" stop-color="#0F172A"/>
+    </linearGradient>
+    <linearGradient id="emeraldGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#14A18C"/>
+      <stop offset="100%" stop-color="#0F766E"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Diamond frame -->
+  <g>
+    <path d="M300 30 L500 220 L300 410 L100 220 Z" fill="none" stroke="#0F172A" stroke-width="10"/>
+    <path d="M300 60 L470 220 L300 380 L130 220 Z" fill="none" stroke="#0F766E" stroke-width="4"/>
+  </g>
+
+  <!-- Wings -->
+  <g>
+    <!-- Left wing -->
+    <path d="M300 175
+             C 250 150, 190 145, 130 170
+             C 175 172, 210 178, 235 190
+             C 195 190, 155 198, 115 218
+             C 160 216, 200 220, 230 232
+             C 190 235, 150 245, 110 262
+             C 155 258, 200 260, 235 270
+             C 260 245, 280 210, 300 190 Z"
+          fill="url(#goldGrad)" stroke="#0F172A" stroke-width="2"/>
+    <!-- Right wing (mirrored) -->
+    <path d="M300 175
+             C 350 150, 410 145, 470 170
+             C 425 172, 390 178, 365 190
+             C 405 190, 445 198, 485 218
+             C 440 216, 400 220, 370 232
+             C 410 235, 450 245, 490 262
+             C 445 258, 400 260, 365 270
+             C 340 245, 320 210, 300 190 Z"
+          fill="url(#goldGrad)" stroke="#0F172A" stroke-width="2"/>
+  </g>
+
+  <!-- Central medallion -->
+  <circle cx="300" cy="150" r="42" fill="url(#navyGrad)" stroke="url(#goldGradSoft)" stroke-width="5"/>
+  <circle cx="300" cy="150" r="32" fill="none" stroke="#0F766E" stroke-width="2"/>
+  <text x="300" y="165" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="42" font-weight="bold" fill="url(#goldGrad)">H</text>
+
+  <!-- Key shaft -->
+  <rect x="288" y="188" width="24" height="180" rx="4" fill="url(#navyGrad)" stroke="#D4AF37" stroke-width="2"/>
+  <!-- Key collar -->
+  <rect x="270" y="205" width="60" height="14" rx="3" fill="url(#emeraldGrad)" stroke="#0F172A" stroke-width="1.5"/>
+  <rect x="278" y="228" width="44" height="10" rx="3" fill="url(#emeraldGrad)" stroke="#0F172A" stroke-width="1.5"/>
+
+  <!-- Key teeth (bow at bottom) -->
+  <path d="M288 368 L288 400 L302 400 L302 388 L316 388 L316 368 Z" fill="url(#navyGrad)" stroke="#D4AF37" stroke-width="2"/>
+
+  <!-- Banner -->
+  <g>
+    <path d="M90 340 L150 320 L150 360 L110 380 Z" fill="url(#navyGrad)" stroke="#0F172A" stroke-width="1"/>
+    <path d="M510 340 L450 320 L450 360 L490 380 Z" fill="url(#navyGrad)" stroke="#0F172A" stroke-width="1"/>
+    <path d="M110 380 L90 400 L120 388 Z" fill="#0A1120"/>
+    <path d="M490 380 L510 400 L480 388 Z" fill="#0A1120"/>
+
+    <path d="M130 305
+             Q300 345 470 305
+             L470 345
+             Q300 385 130 345 Z"
+          fill="url(#navyGrad)" stroke="#D4AF37" stroke-width="3"/>
+
+    <text x="300" y="337" text-anchor="middle"
+          font-family="Georgia, 'Times New Roman', serif" font-size="34"
+          font-weight="700" letter-spacing="4" fill="url(#goldGrad)">HOTELHUB</text>
+  </g>
+</svg>

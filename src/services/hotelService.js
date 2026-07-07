@@ -31,7 +31,7 @@ export const searchHotelsByCity = async (city) => {
 export const getHotelById = async (hotelId) => {
 
     const response = await axios.get(
-        `http://localhost:8081/api/hotels/${hotelId}`
+        `https://finalhotel-production.up.railway.app/api/hotels/${hotelId}`
     );
 
     return response.data;
