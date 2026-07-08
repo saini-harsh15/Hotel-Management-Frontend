@@ -61,7 +61,7 @@ function AppRoutes() {
                 />
 
                 <Route
-                    path="/admin/analytics"
+                    path="/admin/eval"
                     element={
                         <ProtectedRoute>
                             <AdminDashboardPage />
