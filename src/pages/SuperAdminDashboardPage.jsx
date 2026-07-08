@@ -92,7 +92,7 @@ function SuperAdminDashboardPage() {
                     <div
                         className="sa-card"
                         onClick={() =>
-                            navigate("/admin/analytics")
+                            navigate("/admin/eval")
                         }
                     >
 
